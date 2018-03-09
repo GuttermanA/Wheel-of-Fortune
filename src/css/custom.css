@@ -1,0 +1,88 @@
+.empty-box {
+  height: 5rem;
+  width: 5rem;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("resources/imgs/wheel-of-fortune-background_theme.jpg");
+
+    /* Full height */
+    height: 100%;
+    width: 100%
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.disabled-div {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.disabled-wheel {
+  pointer-events: none;
+}
+
+/* #game-board {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+} */
+
+ #row1 {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#row2 {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#row3 {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#row4 {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#category-letters-jumbotron {
+  padding: 0.5em 0.5em;
+  background-color: #e6f3ff;
+  border: 1px solid black;
+}
