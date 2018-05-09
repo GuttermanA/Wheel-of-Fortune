@@ -18,17 +18,10 @@ class Wheel {
   render(wheelValue = "SPIN") {
     let color = ((1<<24)*Math.random()|0).toString(16);
     return `
-      <div class="container">
-        <div class="card" id="wheel" style="background: #${color}">
+        <div class="card h-100 card-block justify-content-center align-items-center" id="wheel" style="background: #${color}">
           <h1 class="display-4 text-center">${wheelValue}</h1>
         </div>
-      </div>
       `
-    // `
-    // <div class="col-lg-3" style="background: ${#+((1<<24)*Math.random()|0).toString(16)};">
-    //   <h2>${default}</h2>
-    // </div>
-    // `
   }
 
 

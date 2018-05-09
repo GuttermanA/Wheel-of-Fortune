@@ -11,7 +11,7 @@ class App {
     this.buyAVowelButton = document.querySelector('#buy-a-vowel')
     this.solveButton = document.querySelector('#solve')
     this.nameSubmit = document.querySelector('#name-submit')
-    this.gameBoardRows = document.querySelectorAll('#game-board .row')
+    this.gameBoardRows = document.querySelectorAll('#game-board .card-deck')
     this.buttonContainer = document.querySelector('#button-container')
     this.buttonRows = document.querySelectorAll('#button-container .row')
     this.startGameButton = document.querySelector('#start-game-button')
@@ -343,12 +343,10 @@ class App {
 
   renderBox() {
     return `
-    <div class="col-lg-1 ">
       <div class="card bg-success empty-box m-1">
        <div class="card-block row-${Math.floor(this.boxId/12) + 1} text-center h1 strong lead my-auto" id="box-${++this.boxId}">
        </div>
       </div>
-    </div>
     `
   }
 
@@ -360,7 +358,6 @@ class App {
 
   styleBlock(block) {
     if (block.querySelector('h1').innerText.match(/^[a-zA-Z]+$/)) {
-
         block.style.display = "none"
         block.parentElement.classList.remove('bg-success')
         block.parentElement.classList.add('card-outline-success')
