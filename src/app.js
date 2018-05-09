@@ -33,6 +33,7 @@ class App {
     this.rowTwo = document.querySelector('#row2')
     this.rowThree = document.querySelector('#row3')
     this.rowFour = document.querySelector('#row4')
+
     this.generateBoxes()
     this.generateWheel();
     this.generateLetterButtons(this.consonants)
@@ -40,6 +41,7 @@ class App {
     this.addSelectors()
     this.addEventListeners();
     this.renderPhrase = this.renderPhrase.bind(this)
+
 
   }
 
@@ -53,6 +55,7 @@ class App {
     this.rowFourCardBlock = document.querySelectorAll('.row-4')
     this.wheelHTML = document.querySelector('#wheel')
     this.modalForm = document.querySelector('#modal-form')
+    this.letterButtons = document.getElementsByName("letter")
   }
 
   addEventListeners(){
@@ -62,13 +65,18 @@ class App {
     this.addPlayAgainEvent()
     this.solveButton.addEventListener("click", () => {
       this.solve()
-      this.solveButton.classList.add('disabled')
+      this.solveButton.classList.add('custom-disable')
     })
     this.buyAVowelButton.addEventListener("click", () =>{
-      this.vowelContainer.classList.remove('disabled-div')
-      this.player.score -= 250
-      this.winnings.innerText = this.player.score
-      this.buyAVowelButton.classList.add('disabled')
+      if (this.player.score >= 250) {
+        this.vowelContainer.classList.remove('custom-disable')
+        this.player.score -= 250
+        this.winnings.innerText = this.player.score
+        this.buyAVowelButton.classList.add('custom-disable')
+      } else {
+        alert("250 points required to buy a vowel")
+      }
+
     })
   }
 
@@ -82,11 +90,11 @@ class App {
           this.gameOver()
         } else {
           this.player.wheelEffect(this.wheel.lastResult)
-          this.toggleDisplay(this.buyAVowelButton, true)
-          this.toggleDisplay(this.solveButton, true)
+          this.buyAVowelButton.classList.remove('custom-disable')
+          this.solveButton.classList.remove('custom-disable')
         }
       } else {
-        this.buttonContainer.classList.remove('disabled-div')
+        this.buttonContainer.classList.remove('custom-disable')
         this.wheelContainer.classList.add('disabled-wheel')
       }
     })
@@ -118,29 +126,21 @@ class App {
   }
 
   addButtonEvents() {
-    this.buttonContainer.addEventListener("click", (event) => {
-      let button = event.target
-      console.log(button.innerText);
-      this.checkSelection(button.innerText)
-      button.classList.add('disabled')
-    })
-    this.vowelContainer.addEventListener("click", (event) => {
-      if (this.player.score < 250) {
-        alert('Not enough money to buy a vowel.')
-      } else {
-        let button = event.target
+    for(const button of this.letterButtons) {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation()
         console.log(button.innerText);
         this.checkSelection(button.innerText)
-        button.classList.add('disabled')
-        this.vowelContainer.classList.add('disabled-div')
-
-
-      }
-    })
+        button.classList.add('custom-disable')
+        if (this.vowels.includes(button.innerText)) {
+          this.vowelContainer.classList.add('custom-disable')
+        }
+      })
+    }
   }
 
   checkSelection(eventTarget) {
-    if (!this.pickedLetters.includes(eventTarget)) {
+    if (eventTarget.length === 1 && !this.pickedLetters.includes(eventTarget)) {
       this.pickedLetters.push(eventTarget)
       this.updateChosenLetters()
     }
@@ -154,14 +154,15 @@ class App {
       console.log('success');
       this.player.successfulGuesses += 1
       this.player.wheelEffect(this.wheel.lastResult, nLetters)
-      this.toggleDisplay(this.buyAVowelButton)
-      this.toggleDisplay(this.solveButton)
-      this.buyAVowelButton.classList.remove('disabled')
-      this.solveButton.classList.remove('disabled')
+      // this.toggleDisplay(this.buyAVowelButton)
+      // this.toggleDisplay(this.solveButton)
+      this.buyAVowelButton.classList.remove('custom-disable')
+      this.solveButton.classList.remove('custom-disable')
     } else {
       this.failedGuess()
     }
-    this.buttonContainer.classList.add('disabled-div')
+    this.buttonContainer.classList.add('custom-disable')
+
     if (this.player.spinCounter === 20) {
       this.gameOver()
     } else {
@@ -171,22 +172,26 @@ class App {
 
   failedGuess() {
     this.player.successfulGuesses = 0
-    this.toggleDisplay(this.buyAVowelButton, true)
-    this.toggleDisplay(this.solveButton, true)
-    this.toggleDisplay(this.solveForm, true)
+    this.buyAVowelButton.classList.add('custom-disable')
+    this.solveButton.classList.add('custom-disable')
     console.log('failure')
   }
 
   gameOver() {
     this.postScore()
-    document.querySelector('#score-display').innerText + this.player.score
+
+    document.querySelector('#score-display').innerText += this.player.score
     $("#end-game").modal({
       'backdrop' : 'static'
     })
   }
 
   solve() {
-    this.toggleDisplay(this.solveForm)
+    // this.toggleDisplay(this.solveForm)
+    $("#solve-modal").modal({
+      'show' : true,
+      'backdrop' : 'static'
+    })
     this.solveFormEvent()
   }
 
@@ -202,7 +207,7 @@ class App {
         alert("Incorrect!")
         this.failedGuess()
       }
-
+      $("#solve-modal").modal('hide')
     })
   }
 
@@ -225,7 +230,8 @@ class App {
       this.generateWheel()
       this.addEventListeners()
       this.chosenLettersHTML.innerText = ""
-      this.toggleDisplay(this.solveForm, true)
+      this.buyAVowelButton.classList.add('custom-disable')
+      this.solveButton.classList.add('custom-disable')
     }
   }
 
@@ -295,7 +301,6 @@ class App {
     fetch(`https://wheel-of-fortune-game.herokuapp.com/score_boards`, options)
       .then(res => res.json())
       .then(json => this.generateScoreList(json))
-
   }
 
   //RENDER
@@ -352,7 +357,7 @@ class App {
 
   renderButton(char) {
     return `
-    <button type="button" class="letter-button btn btn-lg btn-warning">${char}</button>
+    <button type="button" class="letter-button btn btn-lg btn-warning" name="letter">${char}</button>
     `
   }
 
@@ -370,7 +375,6 @@ class App {
   //GENERATE
 
   generateScoreList(json) {
-    document.querySelector('#score-display').innerText += this.player.score
     for(let score of json) {
       this.scoreList.innerHTML += this.renderScore(score)
     }
@@ -381,7 +385,7 @@ class App {
       this.vowelRow.innerHTML = "";
       for(let i = 0; i < letters.length; i++) {
         this.vowelRow.innerHTML += this.renderButton(letters[i]);
-        this.vowelRow.classList.add('disabled');
+        // this.vowelRow.classList.add('custom-disable');
       }
     } else {
       this.keyRowOne.innerHTML = "";

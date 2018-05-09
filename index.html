@@ -2,6 +2,13 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="src/css/resources/imgs/wheel.gif" >
+    <meta property="og:title" content="Wheel of Fortune" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="src/css/resources/imgs/wheel-of-fortune-background_theme.jpg" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="Wheel of Fortune" />
+    <meta property="og:description" content="One page Javascript application featuring full Wheel of Fortune gameplay for 1 player." />
     <title>Wheel of Fortune</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/custom.css">
@@ -12,7 +19,7 @@
 
     <div class="bg">
 
-      <ul class="nav justify-content-center bg-warning">
+      <ul class="nav justify-content-center">
         <li class="nav-item">
           <p class="nav-link">Current User: <span id="current-user"></span></p>
         </li>
@@ -20,7 +27,7 @@
           <p class="nav-link"><strong>Winnings: <span id="winnings"></span></strong></a>
         </li>
         <li class="nav-item">
-          <p class="nav-link lead"> <h4><strong>BOX OF FORTUNE</strong></h4> </p>
+          <p class="nav-link lead"> <h4><strong>WHEEL OF FORTUNE</strong></h4> </p>
         </li>
         <li class="nav-item">
           <p class="nav-link"><strong>Spins Left: <span id="spins"></span></strong></p>
@@ -47,12 +54,12 @@
             <div class="row">
               <div class="col-lg-5" id="wheel-container"></div>
 
-              <div class="col-lg-4 center-block disabled-div text-center" id="button-container">
+              <div class="col-lg-4 center-block custom-disable text-center" id="button-container">
                 <div class="btn-group" role="group" id="key-row1"></div>
                 <div class="btn-group" role="group" id="key-row2"></div>
                 <div class="btn-group" role="group" id="key-row3"></div>
               </div>
-              <div class="col-lg-3 disabled-div text-center" id="vowel-container">
+              <div class="col-lg-3 custom-disable text-center" id="vowel-container">
                 <div class="btn-group" role="group" id="vowel-row"></div>
               </div>
             </div>
@@ -60,98 +67,105 @@
         </div>
 
         <div class="container">
-          <div class="row">
-            <div class="col-lg-4">
-              <button type="button" class="btn btn-primary btn-lg" name="button" style="display: none;" id="buy-a-vowel">Buy a Vowel</button>
-            </div>
-            <div class="col-lg-4">
-              <button type="button" class="btn btn-primary btn-lg" name="button" style="display: none;" id="solve">Solve</button>
-            </div>
-            <div class="col-lg-4">
-              <form class="form-inline" action="#" id="solve-form" style="display: none;">
-                <div class="form-group">
-                  <label for="solve">Solve:</label>
-                  <input type="text" class="form-control" id="solve-input">
-                  <button type="submit" class="btn btn-primary btn-lg" id="solve-submit">Submit</button>
-                </div>
-              </form>
+          <div class="row align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary btn-lg custom-disable" name="button" id="buy-a-vowel">Buy a Vowel</button>
+              <button type="button" class="btn btn-primary btn-lg custom-disable" name="button" id="solve">Solve</button>
             </div>
           </div>
         </div>
-      <div/>
+      </div>
+    </div>
 
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">© 2018 Copyright: <a href="https://github.com/GuttermanA" target="_blank">Alexander Gutterman</a> and <a href="https://github.com/matjack9" target="_blank">Matt Jackson</a></span> |
+        <a href="https://github.com/GuttermanA/wheel-of-fortune" target="_blank">Project Github</a>
+      </div>
+    </footer>
 
 
 
         <!-- Start game Modal -->
-      <div id="start-game" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Welcome to Box of Fortune</h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-inline" action="#" id="modal-form">
-                <div class="form-group">
-                  <label for="solve">Please Enter Your Name:</label>
-                  <input type="text" class="form-control" id="name">
-                  <button type="submit" class="btn btn-default" id="name-submit">Submit</button>
+      <div id="start-game" class="modal fade" role="form" tabindex="-1">
+        <div class="vertical-alignment-helper">
+          <div class="modal-dialog vertical-align-center">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Welcome to Box of Fortune</h4>
                 </div>
-              </form>
+                <div class="modal-body">
+                  <form class="form-inline" action="#" id="modal-form">
+                    <div class="form-group">
+                      <label for="solve">Please Enter Your Name:</label>
+                      <input type="text" class="form-control" id="name">
+                      <button type="submit" class="btn btn-default" id="name-submit">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <!-- End Game Modal -->
-      <div id="end-game" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <div class="row">
-                <h4 class="modal-title col-6">Game Over </h4>
-                <h4 class="modal-title col-6" id="score-display">Score: </h4>
+
+      <div id="end-game" class="modal fade" role="dialog" tabindex="-1">
+        <div class="vertical-alignment-helper">
+          <div class="modal-dialog vertical-align-center">
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title col-8">Game Over </h4>
+                    <h4 class="modal-title col-6" id="score-display">Score: </h4>
+                </div>
+                <div class="modal-body">
+                  <ol id="score-list">
+                  </ol>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn-primary btn-lg" name="button" id="play-again">Play Again</button>
+                </div>
               </div>
             </div>
-            <div class="modal-body">
-              <ol id="score-list">
-              </ol>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn-primary btn-lg" name="button" id="play-again">Play Again</button>
-            </div>
           </div>
-
         </div>
       </div>
     </div>
 
     <!-- Solve Modal -->
-    <div id="solve" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+    <div id="solve-modal" class="modal fade" role="form" tabindex="-1">
+      <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+          <div class="modal-dialog">
 
         <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Solve</h4>
-            <p>Capitlization does not matter. Please enter special characters.</p>
-          </div>
-          <div class="modal-body">
-            <form class="form-inline" action="#" id="solve-form" style="display: none;">
-              <div class="form-group">
-                <label for="solve">Solve:</label>
-                <input type="text" class="form-control" id="solve-input">
-                <button type="submit" class="btn btn-primary btn-lg" id="solve-submit">Submit</button>
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Solve</h4>
+
               </div>
-            </form>
+              <div class="modal-body">
+                <p>Capitlization does not matter. Please enter special characters as shown.</p>
+                <form class="form-inline" action="#" id="solve-form">
+                  <div class="form-group">
+                    <label for="solve">Solve:</label>
+                    <input type="text" class="form-control" id="solve-input">
+                    <button type="submit" class="btn btn-primary btn-lg" id="solve-submit">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-
 
 
 

@@ -7,6 +7,19 @@ body, html {
   height:100%;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #ffc107;
+}
+
+.nav {
+  background-color: #ffc107;
+}
+
 .center {
   /* margin: auto;
   width: 75%;
@@ -46,7 +59,7 @@ body, html {
     background-size: cover;
 }
 
-.disabled-div {
+.custom-disable {
     pointer-events: none;
     opacity: 0.4;
 }
@@ -55,63 +68,36 @@ body, html {
   pointer-events: none;
 }
 
-/* #game-board {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-} */
-
- #row1 {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+.card-deck {
+  padding: 0.5em;
+  margin: 0.5em;
 }
 
-#row2 {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-#row3 {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-#row4 {
-  padding-left: 0.5em;
-  padding-right: 0.5em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  margin-left: 0.5em;
-  margin-right: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
 
 #category-letters-jumbotron {
   padding: 0.5em 0.5em;
   background-color: #e6f3ff;
   border: 1px solid black;
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+ max-width:inherit; /* For Bootstrap 4 - to avoid the modal window stretching full width */
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events:all;
 }
