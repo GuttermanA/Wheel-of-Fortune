@@ -4,6 +4,8 @@ This is a project built at Flatiron school built by Alexander Gutterman and Matt
 
 The application is built to function with the Rails API found [here](https://github.com/GuttermanA/wheel-of-fortune-backend).
 
+The live version of this application can found [here](https://guttermana.github.io/wheel-of-fortune/).
+
 ## Installing
 1. Ensure you have correctly setup the back-end found [here](https://github.com/GuttermanA/wheel-of-fortune-backend)
 2. Clone repository from GitHub
