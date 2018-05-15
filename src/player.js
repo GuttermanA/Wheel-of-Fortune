@@ -2,7 +2,7 @@ class Player {
   constructor(name) {
     this.name = name
     this.score = 0
-    this.spinCounter = 15
+    this.spinCounter = 0
     this.successfulGuesses = 0
     this.spins = document.querySelector('#spins')
     this.currentUser = document.querySelector('#current-user')
