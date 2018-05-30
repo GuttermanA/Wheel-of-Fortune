@@ -6,6 +6,12 @@ The application is built to function with the Rails API found [here](https://git
 
 The live version of this application can found [here](https://guttermana.github.io/wheel-of-fortune/).
 
+#### Demo
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=m5xnjJQ00g0
+" target="_blank"><img src="http://img.youtube.com/vi/m5xnjJQ00g0/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
 ## Installing
 1. Ensure you have correctly setup the back-end found [here](https://github.com/GuttermanA/wheel-of-fortune-backend)
 2. Clone repository from GitHub
